@@ -1,0 +1,67 @@
+.flexContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+  margin: 0 12px;
+}
+.numbersDate,
+.numbersDateWithBorder {
+  padding: 0 9px;
+  margin: 7px 0;
+  font-size: 17px;
+  font-weight: bold;
+  color: #b7b7b7;
+}
+.numbersDateWithBorder {
+  color: red;
+  border: 2px red solid;
+  border-radius: 50%;
+}
+.innerFlexBtnSecond > *,
+.innerFlexBtn > * {
+  margin: 0 10px 5px 10px;
+  color: #009991;
+  font-weight: bold;
+  font-size: 20px;
+}
+.flexBtn,
+.innerFlexBtnSecond,
+.innerFlexBtn {
+  display: flex;
+}
+.calendarConainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 90%;
+  width: 48%;
+  background-color: white;
+}
+.notVisible {
+  visibility: hidden;
+  pointer-events: none;
+}
+.flexSection {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.75em 0;
+}
+.flexSection > * {
+  margin: 0.2em 10px 0.5em 10px;
+  color: #009991;
+  font-weight: bold;
+  font-size: 20px;
+}
+.dayWeekName {
+  display: flex;
+  flex-direction: row;
+  margin-right: 0.20em;
+  text-transform: uppercase;
+}
+.dayWeekName > * {
+  margin: 3px 0.85em;
+  color: #eb1b57;
+  font-weight: bold;
+}

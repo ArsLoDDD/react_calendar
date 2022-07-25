@@ -4,6 +4,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   text-align: center;
+  min-width: 100%;
   margin: 0 12px;
 }
 .numbersDate,
@@ -60,8 +61,18 @@
   margin-right: 0.20em;
   text-transform: uppercase;
 }
-.dayWeekName > * {
-  margin: 3px 0.85em;
+.dayWeekName > *  {
+  margin: 3px 0;
   color: #eb1b57;
   font-weight: bold;
+}
+
+.dayWeekName>:not(:last-child, :first-child){
+  margin: 3px 1.13em;
+}
+.dayWeekName>:last-child{
+  margin-left: 1.13em;
+}
+.dayWeekName>:first-child{
+  margin-right: 1em;
 }

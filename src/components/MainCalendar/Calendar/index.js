@@ -18,13 +18,13 @@ import {
   addMonths,
   subMonths,
 } from "date-fns";
+
 import styles from "./Calendar.module.scss";
+import Week from './Week/index';
+
 class Calendar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      today: new Date(),
-    };
     this.weekDaysArray = {
       firstWeek: [],
       secondWeek: [],
@@ -43,7 +43,7 @@ class Calendar extends Component {
     fivethWeek,
     sixthWeek
   ) {
-    const { today } = this.state;
+    const { today } = this.props;
     const array = [];
     eachDayOfInterval({
       start: new Date(
@@ -541,34 +541,15 @@ class Calendar extends Component {
       }
     }
   }
-  handlerAddMonth = () => {
-    const { today } = this.state;
-    this.setState({ today: addMonths(today, 1) });
-  };
-  handlerSubMonth = () => {
-    const { today } = this.state;
-    this.setState({ today: subMonths(today, 1) });
-  };
-  handlerAddYear = () => {
-    const { today } = this.state;
-    this.setState({ today: addYears(today, 1) });
-  };
-  handlerSubYear = () => {
-    const { today } = this.state;
-    this.setState({ today: subYears(today, 1) });
-  };
-  // renderDays = (day) => {
-  //   const { today } = this.state;
-  //   if (
-  //     day === format(today, "dd") &&
-  //     format(today, "MMMM") === format(new Date(), "MMMM")
-  //   ) {
-  //     return <p className={styles.numbersDateWithBorder}>{day}</p>;
-  //   }
-  //   return <p className={styles.numbersDate}>{day}</p>;
-  // };
+
   render() {
-    const { today } = this.state;
+    const {
+      today,
+      changeTodayAddYear,
+      changeTodaySubYear,
+      changeTodayAddMonth,
+      changeTodaySubMonth,
+    } = this.props;
     const firstWeek = [];
     const secondWeek = [];
     const thirdWeek = [];
@@ -593,12 +574,12 @@ class Calendar extends Component {
         </div>
         <div className={styles.flexBtn}>
           <div className={styles.innerFlexBtn}>
-            <p onClick={this.handlerSubMonth}>{`<`}</p>
-            <p onClick={this.handlerAddMonth}>{`>`}</p>
+            <p onClick={changeTodaySubMonth}>{`<`}</p>
+            <p onClick={changeTodayAddMonth}>{`>`}</p>
           </div>
           <div className={styles.innerFlexBtnSecond}>
-            <p onClick={this.handlerSubYear}>{`<`}</p>
-            <p onClick={this.handlerAddYear}>{`>`}</p>
+            <p onClick={changeTodaySubYear}>{`<`}</p>
+            <p onClick={changeTodayAddYear}>{`>`}</p>
           </div>
         </div>
         <div className={styles.dayWeekName}>
@@ -607,66 +588,12 @@ class Calendar extends Component {
           })}
         </div>
         <div className={styles.flexContainer}>
-          {firstWeek.map((day) => {
-            if (
-              day === format(today, "dd") &&
-              format(today, "MMMM") === format(new Date(), "MMMM") &&
-              format(today, "y") === format(new Date(), "y")
-            ) {
-              return <p className={styles.numbersDateWithBorder}>{day}</p>;
-            }
-            return <p className={styles.numbersDate}>{day}</p>;
-          })}
-          {secondWeek.map((day) => {
-            if (
-              day === format(today, "dd") &&
-              format(today, "MMMM") === format(new Date(), "MMMM") &&
-              format(today, "y") === format(new Date(), "y")
-            ) {
-              return <p className={styles.numbersDateWithBorder}>{day}</p>;
-            }
-            return <p className={styles.numbersDate}>{day}</p>;
-          })}
-          {thirdWeek.map((day) => {
-            if (
-              day === format(today, "dd") &&
-              format(today, "MMMM") === format(new Date(), "MMMM") &&
-              format(today, "y") === format(new Date(), "y")
-            ) {
-              return <p className={styles.numbersDateWithBorder}>{day}</p>;
-            }
-            return <p className={styles.numbersDate}>{day}</p>;
-          })}
-          {fourthWeek.map((day) => {
-            if (
-              day === format(today, "dd") &&
-              format(today, "MMMM") === format(new Date(), "MMMM") &&
-              format(today, "y") === format(new Date(), "y")
-            ) {
-              return <p className={styles.numbersDateWithBorder}>{day}</p>;
-            }
-            return <p className={styles.numbersDate}>{day}</p>;
-          })}
-          {fivethWeek.map((day) => {
-            if (
-              day === format(today, "dd") &&
-              format(today, "MMMM") === format(new Date(), "MMMM") &&
-              format(today, "y") === format(new Date(), "y")
-            ) {
-              return <p className={styles.numbersDateWithBorder}>{day}</p>;
-            }
-            return <p className={styles.numbersDate}>{day}</p>;
-          })}
-          {sixthWeek.map((day) => {
-            if (
-              day === format(today, "dd") &&
-              format(today, "MMMM") === format(new Date(), "MMMM") &&
-              format(today, "y") === format(new Date(), "y")
-            ) {
-              return <p className={styles.numbersDateWithBorder}>{day}</p>;
-            }
-            return <p className={styles.numbersDate}>{day}</p>;
-          })}
+          <Week weekArray={firstWeek} today={today} />
+          <Week weekArray={secondWeek} today={today} />
+          <Week weekArray={thirdWeek} today={today} />
+          <Week weekArray={fourthWeek} today={today} />
+          <Week weekArray={fivethWeek} today={today} />
+          <Week weekArray={sixthWeek} today={today} />
         </div>
       </div>
     );
